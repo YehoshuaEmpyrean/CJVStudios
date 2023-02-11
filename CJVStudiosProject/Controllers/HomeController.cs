@@ -18,6 +18,11 @@ namespace CJVStudiosProject.Controllers
             return View();
         }
 
+        public IActionResult Portfolio()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
