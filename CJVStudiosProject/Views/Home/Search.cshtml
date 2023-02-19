@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Search";
+}
+
+<div class="row">
+    <div class="col">
+        <div class="content">
+            <div class="col">
+                <button id="AddQuery" type="button" class="btn btn-primary">Add Query</button>
+                <ul id="SearchList">
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var SearchListSize = 0;
+
+    $("#AddQuery").click(function () {
+        SearchListSize += 1;
+
+
+        $("#SearchList").append(makeSearchItem());
+
+        $("#DeleteButton" + SearchListSize).click(function () {
+            $("#SearchItem" + this.value).remove();
+        });
+    });
+
+
+    function makeSearchItem() {
+        var searchItem = document.createElement('li');
+        searchItem.setAttribute('id', 'SearchItem' + SearchListSize);
+        searchItem.appendChild(document.createTextNode('Clause ' + SearchListSize + ' AND/OR column_name IN/LIKE string_expression'));
+
+        var deleteButton = document.createElement('button');
+        deleteButton.setAttribute('id', 'DeleteButton' + SearchListSize);
+        deleteButton.setAttribute('class', 'btn btn-primary');
+        deleteButton.setAttribute('value', SearchListSize);
+        deleteButton.appendChild(document.createTextNode('Delete ' + SearchListSize));
+        searchItem.appendChild(deleteButton);
+        return searchItem;
+    }
+</script>
